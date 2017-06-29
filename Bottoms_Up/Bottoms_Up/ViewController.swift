@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var name8: UITextField!
     @IBOutlet weak var name9: UITextField!
     @IBOutlet weak var name10: UITextField!
+        
+    @IBOutlet weak var messageBox: UILabel! //Alert user that a player must be entered
     
     @IBOutlet weak var question1View: UIView!
     @IBOutlet weak var questionLabel: UILabel! // Where the question and player name go
@@ -33,6 +35,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textColor()
         question1View.isHidden = true
         questionLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,93 +92,102 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func playButton(_ sender: Any) {
-        alertMessageOnStartUp()
         
         if let player1Name = name1.text, !player1Name.isEmpty
         {   playersArray.append(name1)
             
         } else {
-            print("Player 1 Empty")
+            print("Player 1 is Empty")
         }
         
         if let player2Name = name2.text, !player2Name.isEmpty
         {   playersArray.append(name2)
             
         } else {
-            print("Player 2 Empty")
+            print("Player 2 is Empty")
         }
         
         if let player3Name = name3.text, !player3Name.isEmpty
         {   playersArray.append(name3)
             
         } else {
-            print("Player 3 Empty")
+            print("Player 3 is Empty")
         }
         
         if let player4Name = name4.text, !player4Name.isEmpty
         {   playersArray.append(name4)
             
         } else {
-            print("Player 4 Empty")
+            print("Player 4 is Empty")
         }
         
         if let player5Name = name5.text, !player5Name.isEmpty
         {   playersArray.append(name5)
             
         } else {
-            print("Player 5 Empty")
+            print("Player 5 is Empty")
         }
         
         if let player6Name = name6.text, !player6Name.isEmpty
         {   playersArray.append(name6)
             
         } else {
-            print("Player 6 Empty")
+            print("Player 6 is Empty")
         }
         
         if let player7Name = name7.text, !player7Name.isEmpty
         {   playersArray.append(name7)
             
         } else {
-            print("Player 7 Empty")
+            print("Player 7 is Empty")
         }
         
         if let player8Name = name8.text, !player8Name.isEmpty
         {   playersArray.append(name8)
             
         } else {
-            print("Player 8 Empty")
+            print("Player 8 is Empty")
         }
         
         if let player9Name = name9.text, !player9Name.isEmpty
         {   playersArray.append(name9)
             
         } else {
-            print("Player 9 Empty")
+            print("Player 9 is Empty")
         }
         
         if let player10Name = name10.text, !player10Name.isEmpty
         {   playersArray.append(name10)
             
         } else {
-            print("Player 10 Empty")
+            print("Player 10 is Empty")
         }
         
         question1View.isHidden = false
         question1View.backgroundColor = getRandomBackgroundColor()
-    
-        let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
-        let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
-        questionLabel.text = RandomPlayer.text! + RandomQuestion
-
+        
+        if playersArray.isEmpty{
+            print("The array is empty")
+            question1View.isHidden = true
+            messageBox.text = ("Enter at lesat 1 player name")
+        } else {
+            alertMessageOnStartUp()
+            let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
+            let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
+            questionLabel.text = RandomPlayer.text! + RandomQuestion
+        }
     }
     
     @IBAction func nextQuestionButton(_ sender: Any) {
         question1View.backgroundColor = getRandomBackgroundColor()
         
+        if playersArray.isEmpty{
+            // Nothing needs to happpen as it is dealt with in the playButton Function
+        } else {
         let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
         let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
         questionLabel.text = RandomPlayer.text! + RandomQuestion
+        }
     }
 }
 
