@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -35,13 +36,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textColor()
         question1View.isHidden = true
         questionLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        alertMessageOnStartUp()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     // Alert message on startup
     func alertMessageOnStartUp(){
@@ -89,6 +94,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         name8.textColor = UIColor.white
         name9.textColor = UIColor.white
         name10.textColor = UIColor.white
+    }
+    
+    func shakeAnimation(button: UIView) {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, -5, 5, -5, 0 ]
+        animation.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+        animation.duration = 0.4
+        animation.isAdditive = true
+        button.layer.add(animation, forKey: "shake")
     }
     
     @IBAction func playButton(_ sender: Any) {
@@ -169,12 +184,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if playersArray.isEmpty{
             print("The array is empty")
             question1View.isHidden = true
-            messageBox.text = ("Enter at lesat 1 player name")
+            messageBox.text = ("Enter at least 1 player name")
+            self.shakeAnimation(button: messageBox) //Shake animation when the array is empty
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // Vibrate if array is empty
         } else {
-            alertMessageOnStartUp()
             let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
             let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
             questionLabel.text = RandomPlayer.text! + RandomQuestion
+            messageBox.isHidden = true
         }
     }
     
@@ -182,7 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         question1View.backgroundColor = getRandomBackgroundColor()
         
         if playersArray.isEmpty{
-            // Nothing needs to happpen as it is dealt with in the playButton Function
+            // Nothing needs to happpen as it is dealt within the playButton Function
         } else {
         let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
         let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
