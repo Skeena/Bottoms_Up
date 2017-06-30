@@ -13,6 +13,8 @@
 		5E338A5E1EE81863003D2665 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E338A5C1EE81863003D2665 /* Main.storyboard */; };
 		5E338A601EE81863003D2665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E338A5F1EE81863003D2665 /* Assets.xcassets */; };
 		5E338A631EE81863003D2665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E338A611EE81863003D2665 /* LaunchScreen.storyboard */; };
+		5E7315701F05CF3E002FFB3D /* facebook-flat-vector-logo-400x400.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73156E1F05CF3E002FFB3D /* facebook-flat-vector-logo-400x400.png */; };
+		5E7315711F05CF3E002FFB3D /* twitter-square-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73156F1F05CF3E002FFB3D /* twitter-square-logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		5E338A5F1EE81863003D2665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E338A621EE81863003D2665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E338A641EE81863003D2665 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E73156E1F05CF3E002FFB3D /* facebook-flat-vector-logo-400x400.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-flat-vector-logo-400x400.png"; sourceTree = "<group>"; };
+		5E73156F1F05CF3E002FFB3D /* twitter-square-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-square-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,8 @@
 			isa = PBXGroup;
 			children = (
 				5E7ED93D1EEAA7E1002C3BCA /* Bottoms_Up_Icon */,
+				5E73156E1F05CF3E002FFB3D /* facebook-flat-vector-logo-400x400.png */,
+				5E73156F1F05CF3E002FFB3D /* twitter-square-logo.png */,
 				5E2434821EE8AF81009A8759 /* Beer.png */,
 			);
 			name = Pics;
@@ -155,6 +161,8 @@
 				5E338A631EE81863003D2665 /* LaunchScreen.storyboard in Resources */,
 				5E2434831EE8AF81009A8759 /* Beer.png in Resources */,
 				5E338A601EE81863003D2665 /* Assets.xcassets in Resources */,
+				5E7315711F05CF3E002FFB3D /* twitter-square-logo.png in Resources */,
+				5E7315701F05CF3E002FFB3D /* facebook-flat-vector-logo-400x400.png in Resources */,
 				5E338A5E1EE81863003D2665 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import Social
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -24,6 +25,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     @IBOutlet weak var messageBox: UILabel! //Alert user that a player must be entered
     
+ 
+
+    
     @IBOutlet weak var question1View: UIView!
     @IBOutlet weak var questionLabel: UILabel! // Where the question and player name go
     
@@ -33,6 +37,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.name1.delegate = self
+        self.name2.delegate = self
+        self.name3.delegate = self
+        self.name4.delegate = self
+        self.name5.delegate = self
+        self.name6.delegate = self
+        self.name7.delegate = self
+        self.name8.delegate = self
+        self.name9.delegate = self
+        self.name10.delegate = self
+        
         textColor()
         question1View.isHidden = true
         questionLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
@@ -47,20 +62,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    
     // Alert message on startup
     func alertMessageOnStartUp(){
         let alert = UIAlertController(title: "Warning!", message: "Please drink responsibly. By continuing, you agree that you are responsible for any consequences that may result from BottomsUp.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Agree", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    // Dismiss keyboard when tapped outside the keyboard
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    // Dimiss keybaord when return button is tapped
+    // Dismiss keyboard when return button is tapped
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         name1.resignFirstResponder()
         name2.resignFirstResponder()
@@ -72,7 +80,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         name8.resignFirstResponder()
         name9.resignFirstResponder()
         name10.resignFirstResponder()
-        return(true)
+        return (true)
+    }
+    
+    // Dismiss keyboard when tapped outside the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     //randomise background colour of each question page
@@ -204,6 +217,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let RandomPlayer = playersArray[Int(arc4random_uniform(UInt32(playersArray.count)))]
         let RandomQuestion = questionArray[Int(arc4random_uniform(UInt32(questionArray.count)))]
         questionLabel.text = RandomPlayer.text! + RandomQuestion
+        }
+    }
+    
+    
+    @IBAction func facebookShareButton(_ sender: Any) {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
+            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+            self.present(fbShare, animated: true, completion: nil)
+            
+        } else {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @IBAction func twitterShareButton(_ sender: Any) {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
+            
+            let tweetShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            
+            self.present(tweetShare, animated: true, completion: nil)
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to tweet.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }
